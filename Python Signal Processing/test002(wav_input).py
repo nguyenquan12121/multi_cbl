@@ -1,12 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.io import wavfile
-from scipy.signal import butter, lfilter, find_peaks, sosfilt
+from scipy.signal import butter, filtfilt, lfilter, find_peaks, sosfilt
 
 #
 # test002: order 4 butterworth bandpass filter. Used with sosfilt instead of lfilter, since 
 # lfilter is not stable for high order filters (proved to be ok for <4).
 #
+
+# changed lfilt to filtfilt
 
 
 # Butterworth bandpass filter
@@ -27,10 +29,8 @@ def butter_lowpass(cutoff, fs, order=4):
 
 
 
-
-
 # load the audio file
-filename = r'C:\Users\oliwi\OneDrive\Desktop\Q4\CBL Digital Twin\github_repo\multi_cbl\Python Signal Processing\heartbeat.wav'
+filename = r'C:\Users\oliwi\OneDrive\Desktop\Q4\CBL Digital Twin\github_repo\multi_cbl\Python Signal Processing\recorded_heartbeat2.wav'
 fs, data = wavfile.read(filename) # fs read from a header, data is the signal
 
 # ---------- Preprocess ----------
@@ -46,12 +46,12 @@ data -= np.mean(data)
 sos = butter_bandpass(50, 180, fs, order=4)
 filtered = sosfilt(sos, data)
 # software gain (simulating analog amplification)
-filtered *= 20 # 20x gain 
+filtered *= 5 # 20x gain 
 
 # envelope detection
 envelope = np.abs(filtered)
 b_env, a_env = butter_lowpass(20, fs, order=2)
-env_smoothed = lfilter(b_env, a_env, envelope)
+env_smoothed = filtfilt(b_env, a_env, envelope)
 
 # peak detection 
 min_spacing_samples = int(0.1 * fs) # 0.1 seconds between peaks	
