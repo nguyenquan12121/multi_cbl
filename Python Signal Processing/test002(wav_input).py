@@ -30,7 +30,7 @@ def butter_lowpass(cutoff, fs, order=4):
 
 
 # load the audio file
-filename = r'C:\Users\oliwi\OneDrive\Desktop\Q4\CBL Digital Twin\github_repo\multi_cbl\Python Signal Processing\recorded_heartbeat2.wav'
+filename = r'C:\Users\oliwi\OneDrive\Desktop\Q4\CBL Digital Twin\github_repo\multi_cbl\Python Signal Processing\output7.wav'
 fs, data = wavfile.read(filename) # fs read from a header, data is the signal
 
 # ---------- Preprocess ----------
@@ -46,7 +46,7 @@ data -= np.mean(data)
 sos = butter_bandpass(50, 180, fs, order=4)
 filtered = sosfilt(sos, data)
 # software gain (simulating analog amplification)
-filtered *= 5 # 20x gain 
+filtered *= 20 # 20x gain 
 
 # envelope detection
 envelope = np.abs(filtered)
