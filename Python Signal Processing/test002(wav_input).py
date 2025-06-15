@@ -4,6 +4,8 @@ from scipy.io import wavfile
 from scipy.signal import butter, filtfilt, lfilter, find_peaks, sosfilt
 
 #
+# Best Peak Detection Test - alternative for Springer Algorithm. Good for testing.
+#
 # test002: order 4 butterworth bandpass filter. Used with sosfilt instead of lfilter, since 
 # lfilter is not stable for high order filters (proved to be ok for <4).
 #
@@ -30,7 +32,7 @@ def butter_lowpass(cutoff, fs, order=4):
 
 
 # load the audio file
-filename = r'C:\Users\oliwi\OneDrive\Desktop\Q4\CBL Digital Twin\github_repo\multi_cbl\Python Signal Processing\output7.wav'
+filename = r'C:\Users\oliwi\OneDrive\Desktop\Q4\CBL Digital Twin\github_repo\multi_cbl\Python Signal Processing\output9.wav'
 fs, data = wavfile.read(filename) # fs read from a header, data is the signal
 
 # ---------- Preprocess ----------

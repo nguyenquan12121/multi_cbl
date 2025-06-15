@@ -4,7 +4,7 @@ import numpy as np
 from scipy.io.wavfile import write
 
 #
-# Thomas's Arduino COM to TXT to WAV conversion script
+# Thomas's Arduino COM -> TXT -> WAV conversion script; 8kHz
 #
 
 
@@ -12,8 +12,8 @@ from scipy.io.wavfile import write
 COM_PORT = 'COM11'           # Replace with your Arduino COM port
 BAUD_RATE = 115200
 DURATION = 10                # Seconds
-TXT_FILE = 'arduino_output3.txt'
-WAV_FILE = 'output7.wav'
+TXT_FILE = 'arduino_output9.txt' # Doesn't matter if you change or not - overwrites
+WAV_FILE = 'output9.wav'     #CHANGE 
 SAMPLE_RATE = 800           # Based on Arduino timing
 
 def record_serial_to_txt():
